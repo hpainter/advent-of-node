@@ -1,0 +1,19 @@
+{
+  "name": "advent-of-node",
+  "version": "1.0.0",
+  "description": "JS solutions + CLI tool for Advent of Code",
+  "main": "index.js",
+  "bin": {
+    "advent": "./index.js"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://hpainter@github.com/hpainter/advent-of-node.git"
+  },
+  "author": "Homer Painter <hpainter@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0"
+  }
+}
