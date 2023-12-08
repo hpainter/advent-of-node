@@ -21,7 +21,6 @@ const solve = async (partNumber=1, inputFile='./input.txt') => {
       // Part 2 requests steps needed to simultaneously travel from every ..A
       // node until all paths are at ..Z nodes
       let nodesA = [...nodes.keys()].filter(p => p.endsWith('A'));
-      let nodesZ = [...nodes.keys()].filter(p => p.endsWith('Z'));
 
       // step count for all ..A nodes to first ..Z:
       let steps = nodesA.map(n => stepsBetween(n, /Z$/, 0, nodes, turns));
@@ -53,13 +52,13 @@ const least_common_multiple = (a, b) => a * b / greatest_common_denom(a, b);
 const stepsBetween = (start, end, startTurn, nodes, turns) => {
   let [numSteps, turnIdx, position] = [0, startTurn, start];
   while (true) {
-    const lastPosition = position;
     position = nodes.get(position)[turns[turnIdx]];
-    if(!position) { console.log(lastPosition, startTurn, turnIdx, turns[turnIdx]); }
     turnIdx += 1;
     numSteps += 1;
-    if (turnIdx == turns.length) { turnIdx = 0; }
     if(position.match(end) !== null) { break; }
+
+    // wrap back around if we run out of turns before finding a match
+    if (turnIdx == turns.length) { turnIdx = 0; }
   }
   return numSteps;
 };
